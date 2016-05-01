@@ -2,7 +2,7 @@
 
 module JekyllAuthor
   class Author < Hash
-    attr_reader 'name', 'uri', 'email'
+    attr_reader :name, :uri, :email
     # Returns a normalized author object for a given author
     #
     # site - The Site object.
@@ -12,14 +12,7 @@ module JekyllAuthor
       @author = author
 
       lookup_author
-
-      if @author.is_a? Hash
-        self['name'] = @author['name']
-        self['email'] = @author['email']
-        self['uri'] = @author['uri']
-      elsif @author.is_a? String
-        self['name'] = @author
-      end
+      hash_author
     end
 
     private
@@ -31,12 +24,18 @@ module JekyllAuthor
     def lookup_author
       @author ||= default
       if @author.is_a?(String) && @site.config['authors'].is_a?(Array)
-        @site.config['authors'].each do |a|
-          if a['name'] == @author
-            @author = a
-            break
-          end
-        end
+        author = @site.config['authors'].find { |a| a[:name] == @author }
+        @author = author unless author.nil?
+      end
+    end
+
+    def hash_author
+      if @author.is_a? Hash
+        self[:name] = @author[:name]
+        self[:email] = @author[:email]
+        self[:uri] = @author[:uri]
+      elsif @author.is_a? String
+        self[:name] = @author
       end
     end
   end

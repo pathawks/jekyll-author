@@ -3,16 +3,16 @@ require 'spec_helper'
 describe JekyllAuthor do
   let(:author1) do
     {
-      'name' => 'Author 1',
-      'email' => 'author1@example.com',
-      'uri' => 'https://example.com/author1'
+      name: 'Author 1',
+      email: 'author1@example.com',
+      uri: 'https://example.com/author1'
     }
   end
   let(:author2) do
     {
-      'name' => 'Author 2',
-      'email' => 'author2@example.com',
-      'uri' => 'https://example.com/author2'
+      name: 'Author 2',
+      email: 'author2@example.com',
+      uri: 'https://example.com/author2'
     }
   end
   let(:site) { make_site('authors' => [author2]) }
@@ -42,7 +42,7 @@ describe JekyllAuthor do
 
     it 'returns a Hash with a name when passed a string' do
       author = normalized_author('Author 3')
-      expect(author).to include('name' => 'Author 3')
+      expect(author).to include(name: 'Author 3')
     end
   end
 
