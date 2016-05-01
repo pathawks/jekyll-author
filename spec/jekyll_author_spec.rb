@@ -15,7 +15,7 @@ describe JekyllAuthor do
       uri: 'https://example.com/author2'
     }
   end
-  let(:site) { make_site('authors' => [author2]) }
+  let(:site) { make_site(authors: [author2]) }
 
   def normalized_author(input = nil)
     ::JekyllAuthor::Author.new(site, input)
@@ -30,7 +30,7 @@ describe JekyllAuthor do
   end
 
   context 'when site.author is an author object' do
-    let(:site) { make_site('author' => author1) }
+    let(:site) { make_site(author: author1) }
 
     it 'returns site.author when passed nil' do
       expect(normalized_author(nil)).to eq author1
