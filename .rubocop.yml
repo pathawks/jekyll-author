@@ -1,0 +1,10 @@
+Metrics/LineLength:
+  Exclude:
+    - spec/**/*
+    - jekyll-author.gemspec
+
+Style/Documentation:
+  Enabled: false
+
+Style/FileName:
+  Enabled: false
